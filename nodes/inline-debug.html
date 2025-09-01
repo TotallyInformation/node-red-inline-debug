@@ -1,0 +1,61 @@
+<!--
+    Copyright (c) 2025-2025 Julian Knight (Totally Information)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<script type="module" async src="./resources/@totallyinformation/node-red-inline-debug/inline-debug-config.mjs"></script>
+
+<script type="text/html" data-template-name="inline-debug">
+    <div id="edit-panel">
+    
+        <div class="form-row">
+            <label for="node-input-typed-complete"><i class="fa fa-list"></i> <span data-i18n="debug.output"></span></label>
+            <input id="node-input-typed-complete" type="text" style="width: 70%">
+            <input id="node-input-complete" type="hidden">
+            <input id="node-input-targetType" type="hidden">
+        </div>
+        <div class="form-row">
+            <label for="node-input-tosidebar"><i class="fa fa-random"></i> <span data-i18n="debug.to"></span></label>
+            <label for="node-input-tosidebar" style="width:70%">
+                <input type="checkbox" id="node-input-tosidebar" style="display:inline-block; width:22px; vertical-align:top;">
+                <span data-i18n="debug.toSidebar">Debug Window</span>
+            </label>
+        </div>
+        <div class="form-row">
+            <label for="node-input-console"> </label>
+            <label for="node-input-console" style="width:70%">
+                <input type="checkbox" id="node-input-console" style="display:inline-block; width:22px; vertical-align:top;">
+                <span data-i18n="debug.toConsole">System Console</span>
+            </label>
+        </div>
+        <div class="form-row">
+            <label for="node-input-tostatus"> </label>
+            <label for="node-input-tostatus" style="width:70%">
+                <input type="checkbox" id="node-input-tostatus" style="display:inline-block; width:22px; vertical-align:top;">
+                <span data-i18n="debug.toStatus">Node Status (32 characters)</span>
+            </label>
+        </div>
+        <div class="form-row" id="node-tostatus-line">
+            <label for="node-input-typed-status"></label>
+            <input id="node-input-typed-status" type="text" style="width: 70%">
+            <input id="node-input-statusVal" type="hidden">
+            <input id="node-input-statusType" type="hidden">
+        </div>
+
+        <div aria-label="Node name (descriptive only)" class="form-row">
+            <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+            <input type="text" id="node-input-name">
+        </div>
+    </div>
+</script>
