@@ -17,10 +17,11 @@
 import { defineConfig } from 'eslint/config'
 import globals from 'globals' // https://www.npmjs.com/package/globals
 // @ts-ignore
-import pluginImport from 'eslint-plugin-import' // https://www.npmjs.com/package/eslint-plugin-import
+import { importX } from 'eslint-plugin-import-x' // https://www.npmjs.com/package/eslint-plugin-import-x
 import pluginPromise from 'eslint-plugin-promise' // https://www.npmjs.com/package/eslint-plugin-promise
 import jsdoc from 'eslint-plugin-jsdoc'// https://github.com/gajus/eslint-plugin-jsdoc
 import node from 'eslint-plugin-n' // https://www.npmjs.com/package/eslint-plugin-n, node.js only
+import pluginSecurity from 'eslint-plugin-security' // https://www.npmjs.com/package/eslint-plugin-security, node.js only
 import stylistic from '@stylistic/eslint-plugin' // https://eslint.style
 import js from '@eslint/js'
 
@@ -170,16 +171,16 @@ export default defineConfig([
         plugins: {
             'js': js,
             'pluginPromise': pluginPromise,
-            'pluginImport': pluginImport,
+            'import-x': importX,
             'jsdoc': jsdoc,
             '@stylistic': stylistic,
         },
         extends: [
-            js.configs.recommended,
+            'js/recommended',
             jsdoc.configs['flat/recommended'],
             stylistic.configs.recommended,
             pluginPromise.configs['flat/recommended'],
-            pluginImport.flatConfigs.recommended,
+            'import-x/flat/recommended',
         ],
         settings: {
             jsdoc: { mode: 'jsdoc', },
@@ -253,19 +254,21 @@ export default defineConfig([
         },
         plugins: {
             'js': js,
-            'pluginImport': pluginImport,
+            'import-x': importX,
             'pluginPromise': pluginPromise,
             'jsdoc': jsdoc,
             '@stylistic': stylistic,
             'n': node, // <= n/node
+            'pluginSecurity': pluginSecurity, // <= eslint-plugin-security for Node.js security best practices
         },
         extends: [
-            js.configs.recommended,
+            'js/recommended',
             jsdoc.configs['flat/recommended'],
             stylistic.configs.recommended,
             pluginPromise.configs['flat/recommended'],
-            pluginImport.flatConfigs.recommended,
+            'import-x/flat/recommended',
             node.configs['flat/recommended-module'], // <= module/ESM
+            pluginSecurity.configs.recommended,
         ],
         settings: {
             jsdoc: { mode: 'jsdoc', },
