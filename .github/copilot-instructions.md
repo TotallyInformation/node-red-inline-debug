@@ -12,7 +12,7 @@
 
 ### JavaScript/TypeScript
 
-- For node.js, use features available to the latest LTS version but warn if using features not available to v18
+- For node.js, use features available to the latest LTS version but warn if using features not available to v22.9+ (Node-RED v5 baseline)
 - For browsers, use features available to 90%+ browsers/users
 - No trailing semicolons
 - Single quotes for strings
@@ -23,7 +23,7 @@
 - Use optional chaining
 - Add JSDoc if missing
 - Add TypeScript types/interfaces
-- Assume the use of ESLINT v9
+- Assume the use of ESLINT v9+
 
 ### Documentation
 
