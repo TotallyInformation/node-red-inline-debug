@@ -1,7 +1,7 @@
 /* eslint-disable jsdoc/valid-types */
 /** An inline output (debug) node
  *
- * Copyright (c) 2025-2025 Julian Knight (Totally Information)
+ * Copyright (c) 2025-2026 Julian Knight (Totally Information)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict'
+// 'use strict'
 
 /** --- Type Defs - should help with coding ---
- * @typedef {import('../../typedefs').runtimeRED} runtimeRED
- * @typedef {import('../../typedefs').runtimeNodeConfig} runtimeNodeConfig
- * @typedef {import('../../typedefs').runtimeNode} runtimeNode
- * @typedef {import('../../typedefs').runtimeDebugOutput} runtimeDebugOutput
- * @typedef {import('../../typedefs').tiThrewOutNode} tiThrewOutNode <= Change this to be specific to this node
+ * @typedef {import('../typedefs.cjs').runtimeRED} runtimeRED
+ * @typedef {import('../typedefs.cjs').runtimeNodeConfig} runtimeNodeConfig
+ * @typedef {import('../typedefs.cjs').runtimeNode} runtimeNode
+ * @typedef {import('../typedefs.cjs').runtimeDebugOutput} runtimeDebugOutput
+ * @typedef {import('../typedefs.cjs').InlineDebugNode} InlineDebugNode
  */
 
 // #region ----- Module level variables ---- //
@@ -30,7 +30,8 @@
 // Uncomment this if you want to use the promisified version of evaluateNodeProperty
 // const { promisify } = require('node:util')
 
-const util = require('node:util')
+// @ts-ignore
+import * as util from 'node:util'
 
 /** Main (module) variables - acts as a configuration object
  *  that can easily be passed around.
@@ -59,7 +60,7 @@ function sendDebug(commsMsg) {
 }
 
 /** Prepare the value to send to the Editor's debug sidebar
- * @param {runtimeNode & tiThrewOutNode} node The node instance
+ * @param {runtimeNode & InlineDebugNode} node The node instance
  * @param {object} msg The message object
  * @param {Function} done The callback function to call when done
  */
@@ -100,7 +101,7 @@ function prepareValue(node, msg, done) {
 }
 
 /** Prepare the value to send to the Editor's status bar
- * @param {runtimeNode & tiThrewOutNode} node The node instance
+ * @param {runtimeNode & InlineDebugNode} node The node instance
  * @param {object} msg The message object
  * @param {Function} done The callback function to call when done
  */
@@ -164,9 +165,9 @@ function ModuleDefinition(RED) {
 }
 
 /** 2) This is run when an actual instance of our node is committed to a flow
- * type {function(this:runtimeNode&senderNode, runtimeNodeConfig & senderNode):void}
- * @param {runtimeNodeConfig & tiThrewOutNode} config The Node-RED node instance config object
- * @this {runtimeNode & tiThrewOutNode}
+ * type {function(this:runtimeNode&InlineDebugNode, runtimeNodeConfig & InlineDebugNode):void}
+ * @param {runtimeNodeConfig & InlineDebugNode} config The Node-RED node instance config object
+ * @this {runtimeNode & InlineDebugNode}
  */
 function nodeInstance(config) {
     // As a module-level named function, it will inherit `mod` and other module-level variables
@@ -194,6 +195,9 @@ function nodeInstance(config) {
     this.statusType = config.statusType ?? 'counter'
 
     if (this.complete === 'false') this.complete = 'payload'
+
+    console.log(`Inline Debug Node`, this)
+    debugger 
 
     this.counter = 0
     this.lastTime = new Date().getTime()
@@ -254,7 +258,7 @@ function nodeInstance(config) {
  * @param {object} msg The msg object received.
  * @param {Function} send Per msg send function, node-red v1+
  * @param {Function} done Per msg finish function, node-red v1+
- * @this {runtimeNode & tiThrewOutNode}
+ * @this {runtimeNode & InlineDebugNode}
  */
 async function inputMsgHandler(msg, send, done) {
     // const RED = mod.RED
@@ -380,4 +384,4 @@ async function inputMsgHandler(msg, send, done) {
 // #endregion ----- Module-level support functions ----- //
 
 // Export the module definition (1), this is consumed by Node-RED on startup.
-module.exports = ModuleDefinition
+export default ModuleDefinition

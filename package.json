@@ -25,7 +25,7 @@
   "node-red": {
     "version": ">=5",
     "nodes": {
-      "inline-debug": "nodes/inline-debug.js"
+      "inline-debug": "nodes/inline-debug.cjs"
     }
   },
   "engines": {
