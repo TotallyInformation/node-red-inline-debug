@@ -14,11 +14,13 @@
     limitations under the License.
 -->
 
-<script type="module" async src="./resources/@totallyinformation/node-red-inline-debug/inline-debug-config.mjs"></script>
-
 <script type="text/html" data-template-name="inline-debug">
     <div id="edit-panel">
-    
+        <div class="form-row">
+            <label for="node-input-settings"><i class="fa fa-cog"></i> Settings</label>
+            <input id="node-input-settings" type="text">
+        </div>
+
         <div class="form-row">
             <label for="node-input-typed-complete"><i class="fa fa-list"></i> <span data-i18n="debug.output"></span></label>
             <input id="node-input-typed-complete" type="text" style="width: 70%">
@@ -59,3 +61,5 @@
         </div>
     </div>
 </script>
+
+<script src="./resources/@totallyinformation/node-red-inline-debug/inline-debug.cjs"></script>
