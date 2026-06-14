@@ -193,7 +193,7 @@ export default defineConfig([
 
     },
 
-    // Node.js (v18) CommonJS, no-build
+    // Node.js (v22) CommonJS, no-build
     {
         // files: nodeCJS,
         files: ['**/*.{js,cjs}'],
@@ -227,7 +227,7 @@ export default defineConfig([
             jsdoc: { mode: 'jsdoc', },
             // Better to pick up from package.json unless needing to override
             // package.json is restricted to >=v18 to match Node-RED. We want at least v18.4
-            node: { version: '18.4.0', },
+            node: { version: '22.9.0', },
         },
         rules: {
             ...jsdocRules,
@@ -271,7 +271,7 @@ export default defineConfig([
             jsdoc: { mode: 'jsdoc', },
             // Override for node.js current LTS (assuming the use of ESBUILD)
             // Better to pick up from package.json unless needing to override
-            node: { version: 'lts', },
+            node: { version: '22.9.0', },
         },
         rules: {
             ...jsdocRules,
